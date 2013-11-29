@@ -1,0 +1,15 @@
+{application, stats,
+ [
+  {description, "Statistics"},
+  {vsn, "1.0.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  folsom,
+                  riemann,
+                  lager
+                 ]},
+  {mod, { stats_app, []}},
+  {env, []}
+ ]}.
