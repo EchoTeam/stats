@@ -1,9 +1,3 @@
-%%%
-%%% Copyright (c) 2009-2013 JackNyfe. All rights reserved.
-%%% THIS SOFTWARE IS PROPRIETARY AND CONFIDENTIAL. DO NOT REDISTRIBUTE.
-%%%
-
-
 -module(stats_submitter).
 -behaviour(gen_server).
 

@@ -1,8 +1,3 @@
-%%%
-%%% Copyright (c) 2007-2013 JackNyfe. All rights reserved.
-%%% THIS SOFTWARE IS PROPRIETARY AND CONFIDENTIAL. DO NOT REDISTRIBUTE.
-%%%
-
 -module(stats_collector).
 
 -export([
