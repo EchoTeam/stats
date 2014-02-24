@@ -16,12 +16,13 @@
 -type metric() :: {service(), metric_value(), time()} | {service(), metric_value(), time(), list()}.
 
 -type provider() :: fun(() -> [metric()]).
+-type value() :: float() | integer().
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Public API
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--spec notify({binary(), nonempty_string(), char()} | nonempty_string(), float(), atom()) -> ok.
+-spec notify({binary(), nonempty_string(), char()} | nonempty_string(), value(), atom()) -> ok.
 notify({Domain, Counter, Mode}, Value, Type) ->
     Parts = case Domain of
         <<".">> ->
@@ -38,7 +39,7 @@ notify(Name, Value, gauge = Type) when is_list(Name) ->
 notify(Name, Value, Type) when is_list(Name) ->
     folsom_metrics:safely_notify(Name, Value, Type).
 
--spec notify(nonempty_string(), float(), atom(), list()) -> ok.
+-spec notify(nonempty_string(), value(), atom(), list()) -> ok.
 notify(Name, Value, gauge = Type, Tags) when is_list(Name) ->
     folsom_metrics:safely_notify(Name, {Value, time_utils:unixtime()}, Type, Tags);
 
