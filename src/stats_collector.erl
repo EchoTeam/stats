@@ -19,6 +19,10 @@
     terminate/2
     ]).
 
+-export_type([
+	unsafe_string/0
+]).
+
 -define(DEFAULT_GAUGE_TTL, 10800). %3 hours
 -define(PERIOD, 60000).
 -define(EXP, 0.000001).
@@ -28,6 +32,7 @@
 -type time() :: integer().
 -type metric() :: {service(), metric_value(), time()} | {service(), metric_value(), time(), list()}.
 -type opts() :: [{name, string()} | {group, string()} | {desc, string()}].
+-type unsafe_string() :: string() | atom() | binary() | integer().
 
 -record(state, {opts = [] :: list(),
                 collector = undefined :: 'undefined' | {pid(), reference()},
@@ -51,7 +56,7 @@ prepare(Metrics, Opts) ->
                 {Name, Value, Time, Adds}
         end, Metrics).
 
--spec safe_string(string()) -> string().
+-spec safe_string(unsafe_string()) -> string().
 safe_string(S) ->
     re:replace(type_utils:str(S), "\\W", "_", [global, {return, list}]).
 

@@ -22,7 +22,7 @@
 % Public API
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--spec notify({binary(), nonempty_string(), char()} | nonempty_string(), value(), atom()) -> ok.
+-spec notify({stats_collector:unsafe_string(), nonempty_string(), char()} | nonempty_string(), value(), atom()) -> ok.
 notify({Domain, Counter, Mode}, Value, Type) ->
     Parts = case Domain of
         <<".">> ->
@@ -50,7 +50,7 @@ notify(Name, Value, Type, Tags) when is_list(Name) ->
 prepare(Metrics, Opts) ->
     stats_collector:prepare(Metrics, Opts).
 
--spec safe_string(string()) -> string().
+-spec safe_string(stats_collector:unsafe_string()) -> string().
 safe_string(S) ->
     stats_collector:safe_string(S).
 
